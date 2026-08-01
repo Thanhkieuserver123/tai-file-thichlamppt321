@@ -38,17 +38,17 @@
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col justify-between relative overflow-x-hidden">
 
-    <!-- Các khối màu nền lỏng chuyển động tạo hiệu ứng hắt sáng qua gương -->
+    <!-- Các khối màu nền lỏng chuyển động -->
     <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-sky-300/40 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
     <div class="absolute top-1/3 right-10 w-[450px] h-[450px] bg-pink-300/30 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="absolute bottom-10 left-10 w-[400px] h-[400px] bg-amber-200/40 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <!-- Header phong cách Gương Lỏng Sáng -->
+    <!-- Header -->
     <header class="py-10 px-6 text-center liquid-glass-light border-x-0 border-t-0 relative z-10 shadow-sm">
         <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-teal-600 via-sky-600 to-indigo-600 bg-clip-text text-transparent">
             TẢI FILE THICHLAMPPT321
         </h1>
-        <p class="text-slate-600 mt-3 text-sm md:text-base font-medium">Cảm ơn bạn đã quan tâm đến kênh Thichlampp321.</p>
+        <p class="text-slate-600 mt-3 text-sm md:text-base font-medium">Cảm ơn bạn đã quan tâm đến kênh Thichlampp321[cite: 2].</p>
         
         <!-- Bộ lọc danh mục -->
         <div class="flex justify-center gap-3 mt-6 flex-wrap">
@@ -59,22 +59,22 @@
         </div>
     </header>
 
-    <!-- Main Content: Lưới card nạp tự động từ data.json -->
+    <!-- Main Content -->
     <main class="max-w-6xl mx-auto px-6 py-12 flex-grow w-full relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="cardGrid">
-            <!-- Dữ liệu tự động render vào đây -->
-        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="cardGrid"></div>
     </main>
 
-    <!-- Modal Popup Chi tiết (Hiệu ứng kính lỏng sáng) -->
+    <!-- Modal Popup Chi tiết -->
     <div id="fileModal" class="fixed inset-0 bg-slate-900/30 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
         <div class="liquid-glass-light w-full max-w-xl rounded-3xl p-6 md:p-8 relative shadow-2xl scale-100">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-600 hover:text-slate-900 text-xl font-bold liquid-btn w-9 h-9 rounded-full flex items-center justify-center transition">×</button>
             
             <div class="text-center">
+                <!-- Phần Note tự động ẩn/hiện thông minh -->
                 <p id="modalNote" class="text-xs text-amber-800 font-semibold mb-3 bg-amber-400/20 border border-amber-400/30 py-1.5 px-4 rounded-full inline-block backdrop-blur-md"></p>
+                
                 <h2 id="modalTitle" class="text-2xl font-bold text-slate-900 mb-2 mt-1"></h2>
-                <p class="text-xs text-slate-500 mb-6 font-medium">@Thichlamppt321</p>
+                <p class="text-xs text-slate-500 mb-6 font-medium">@Thichlamppt321[cite: 2]</p>
 
                 <div class="flex justify-center gap-4 mb-6 text-slate-700">
                     <span class="liquid-btn px-4 py-1.5 rounded-full text-xs font-semibold shadow-sm">TikTok</span>
@@ -93,7 +93,7 @@
         © 2026 Thichlamppt321 - All rights reserved.
     </footer>
 
-    <!-- Script xử lý dữ liệu từ data.json[cite: 1, 2] -->
+    <!-- Script xử lý an toàn khi thiếu thuộc tính note -->
     <script>
         let allFiles = [];
 
@@ -113,15 +113,21 @@
                 let categoryName = file.category === 'slide' ? 'Slide' : (file.category === 'game' ? 'Trò Chơi' : 'Phong Cảnh');
                 let categoryColor = file.category === 'slide' ? 'text-teal-600' : (file.category === 'game' ? 'text-sky-600' : 'text-indigo-600');
                 
+                // Xử lý an toàn nếu file không có thuộc tính note trong JSON
+                let safeTitle = file.title ? file.title.replace(/'/g, "\\'") : "";
+                let safeNote = file.note ? file.note.replace(/'/g, "\\'") : "";
+                let safeLink = file.link ? file.link : "#";
+                let safeImg = file.img ? file.img : "";
+
                 grid.innerHTML += `
-                    <div data-category="${file.category}" class="group liquid-glass-light rounded-3xl overflow-hidden shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1.5 hover:shadow-2xl" onclick="openModal('${file.title.replace(/'/g, "\\'")}', '${file.note.replace(/'/g, "\\'")}', '${file.link}')">
+                    <div data-category="${file.category}" class="group liquid-glass-light rounded-3xl overflow-hidden shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1.5 hover:shadow-2xl" onclick="openModal('${safeTitle}', '${safeNote}', '${safeLink}')">
                         <div class="h-52 overflow-hidden relative m-3 rounded-2xl shadow-inner">
-                            <img src="${file.img}" alt="${file.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <img src="${safeImg}" alt="${safeTitle}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent opacity-60"></div>
                         </div>
                         <div class="px-6 pb-6 pt-2">
                             <span class="text-xs font-bold ${categoryColor} uppercase tracking-wider">${categoryName}</span>
-                            <h3 class="text-lg font-bold mt-1.5 text-slate-900 group-hover:text-teal-600 transition">${file.title}</h3>
+                            <h3 class="text-lg font-bold mt-1.5 text-slate-900 group-hover:text-teal-600 transition">${safeTitle}</h3>
                             <p class="text-slate-500 text-xs mt-2 font-medium">@Thichlamppt321</p>
                         </div>
                     </div>
@@ -131,7 +137,15 @@
 
         function openModal(title, note, downloadLink) {
             document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalNote').innerText = "(*) LƯU Ý QUAN TRỌNG: " + note;
+            
+            let noteElement = document.getElementById('modalNote');
+            if (note && note.trim() !== "") {
+                noteElement.innerText = "(*) LƯU Ý QUAN TRỌNG: " + note;
+                noteElement.style.display = "inline-block";
+            } else {
+                noteElement.style.display = "none";
+            }
+
             document.getElementById('modalDownloadBtn').href = downloadLink;
             document.getElementById('fileModal').classList.remove('hidden');
         }
