@@ -73,6 +73,16 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" id="cardGrid"></div>
     </main>
 
+    <!-- Mã QR treo lơ lửng phía bên phải màn hình -->
+    <div class="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center liquid-glass-light p-3.5 rounded-3xl shadow-2xl transition-all duration-300 hover:scale-105 border border-white/80">
+        <p class="text-xs font-bold text-slate-800 mb-2 tracking-wide uppercase">Quét liên hệ</p>
+        <div class="bg-white p-2 rounded-2xl shadow-inner border border-slate-100">
+            <!-- Thay 'qr-code.png' bằng tên hoặc đường dẫn ảnh QR của bạn -->
+            <img src="qr-code.png" alt="Mã QR liên hệ" class="w-28 h-28 object-cover rounded-xl">
+        </div>
+        <span class="text-[10px] text-slate-500 mt-2 font-semibold">@Thichlamppt321</span>
+    </div>
+
     <!-- Modal Popup Chi tiết -->
     <div id="fileModal" class="fixed inset-0 bg-slate-900/30 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
         <div class="liquid-glass-light w-full max-w-xl rounded-3xl p-5 sm:p-8 relative shadow-2xl scale-100">
@@ -184,9 +194,5 @@
             }
         }
     </script>
-
-    <!-- Cloudflare Web Analytics -->
-    <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0e29efb68e824152bf07bce9e1f6ed4c"}'></script>
-    <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
