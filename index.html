@@ -4,17 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kho Tài Nguyên & Slide Sáng Tạo</title>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1VBBHJKLGG"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-1VBBHJKLGG');
-    </script>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -96,13 +85,13 @@
                 <h2 id="modalTitle" class="text-xl sm:text-2xl font-bold text-slate-900 mb-2 mt-1"></h2>
                 <p class="text-xs text-slate-500 mb-5 sm:mb-6 font-medium">@Thichlamppt321</p>
 
-                <!-- Chỉ giữ lại nút TikTok -->
+                <!-- Liên kết TikTok -->
                 <div class="flex justify-center mb-5 sm:mb-6">
                     <a href="https://www.tiktok.com/@thichlamppt321" target="_blank" class="liquid-btn px-5 py-1.5 rounded-full text-xs font-semibold text-slate-700 hover:text-teal-700 shadow-sm transition">TikTok</a>
                 </div>
 
-                <!-- Nút tải xuống có kèm sự kiện đếm lượt click tải -->
-                <a id="modalDownloadBtn" href="#" target="_blank" onclick="trackDownload()" class="liquid-btn block w-full py-3 sm:py-3.5 px-6 rounded-2xl font-bold text-teal-700 hover:text-teal-800 hover:bg-white transition duration-300 text-center shadow-lg active:scale-[0.98] border border-teal-500/30">
+                <!-- Nút tải xuống -->
+                <a id="modalDownloadBtn" href="#" target="_blank" class="liquid-btn block w-full py-3 sm:py-3.5 px-6 rounded-2xl font-bold text-teal-700 hover:text-teal-800 hover:bg-white transition duration-300 text-center shadow-lg active:scale-[0.98] border border-teal-500/30">
                     TẢI XUỐNG NGAY
                 </a>
             </div>
@@ -172,16 +161,6 @@
 
         function closeModal() {
             document.getElementById('fileModal').classList.add('hidden');
-        }
-
-        // Hàm gửi sự kiện bấm tải về Google Analytics
-        function trackDownload() {
-            let title = document.getElementById('modalTitle').innerText;
-            if (typeof gtag === 'function') {
-                gtag('event', 'download_file', {
-                    'file_name': title
-                });
-            }
         }
 
         window.onclick = function(event) {
