@@ -1,0 +1,16 @@
+[
+  {
+    "category": "slide",
+    "title": "Slide Mở Đầu Bài Thuyết Trình",
+    "note": "Slide này phải dùng Powerpoint 2019 trở lên, thiết kế hiện đại, đầy đủ hiệu ứng.",
+    "img": "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80",
+    "link": "https://drive.google.com/link-tai-file-cua-ban"
+  },
+  {
+    "category": "game",
+    "title": "Trò Chơi Giải Cứu Đại Dương",
+    "note": "Trò chơi tương tác sinh học bảo vệ môi trường, thiết kế trực quan cho học sinh.",
+    "img": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80",
+    "link": "https://drive.google.com/link-tai-file-khac"
+  }
+]
