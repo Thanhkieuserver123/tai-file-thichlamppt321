@@ -6,69 +6,97 @@
     <title>Kho Tài Nguyên & Slide Sáng Tạo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Hiệu ứng gương lỏng sáng (Light Liquid Glass) kiểu iOS */
+        .liquid-glass-light {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px rgba(31, 38, 135, 0.08), inset 0 1px 2px rgba(255, 255, 255, 1);
+        }
+        .liquid-glass-light:hover {
+            background: rgba(255, 255, 255, 0.75);
+            border-color: rgba(255, 255, 255, 1);
+        }
+        
+        /* Nút bấm hiệu ứng giọt nước / gương lỏng */
+        .liquid-btn {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 1);
+        }
+        .liquid-btn:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-1px);
+        }
+    </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col justify-between relative overflow-x-hidden">
 
-    <!-- Hiệu ứng nền kính mờ -->
-    <div class="absolute top-10 left-10 w-96 h-96 bg-teal-500/20 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="absolute top-1/3 right-10 w-96 h-96 bg-indigo-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- Các khối màu nền lỏng chuyển động tạo hiệu ứng hắt sáng qua gương -->
+    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-sky-300/40 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+    <div class="absolute top-1/3 right-10 w-[450px] h-[450px] bg-pink-300/30 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-10 left-10 w-[400px] h-[400px] bg-amber-200/40 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <!-- Header -->
-    <header class="py-8 px-6 text-center border-b border-white/10 bg-slate-900/30 backdrop-blur-2xl relative z-10">
-        <h1 class="text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-teal-400 to-indigo-400 bg-clip-text text-transparent">
+    <!-- Header phong cách Gương Lỏng Sáng -->
+    <header class="py-10 px-6 text-center liquid-glass-light border-x-0 border-t-0 relative z-10 shadow-sm">
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-teal-600 via-sky-600 to-indigo-600 bg-clip-text text-transparent">
             TẢI FILE THICHLAMPPT321
         </h1>
-        <p class="text-slate-400 mt-2 text-sm md:text-base">Cảm ơn bạn đã quan tâm đến kênh Thichlampp321.</p>
+        <p class="text-slate-600 mt-3 text-sm md:text-base font-medium">Cảm ơn bạn đã quan tâm đến kênh Thichlampp321.</p>
         
         <!-- Bộ lọc danh mục -->
         <div class="flex justify-center gap-3 mt-6 flex-wrap">
-            <button onclick="filterCards('all')" class="px-4 py-2 rounded-full text-sm font-medium bg-teal-500/80 backdrop-blur-md text-slate-950 transition hover:bg-teal-400 shadow-lg">Tất cả</button>
-            <button onclick="filterCards('slide')" class="px-4 py-2 rounded-full text-sm font-medium bg-white/5 border border-white/10 backdrop-blur-md text-slate-300 transition hover:bg-white/10">Slide Thuyết Trình</button>
-            <button onclick="filterCards('game')" class="px-4 py-2 rounded-full text-sm font-medium bg-white/5 border border-white/10 backdrop-blur-md text-slate-300 transition hover:bg-white/10">Trò Chơi</button>
-            <button onclick="filterCards('landscape')" class="px-4 py-2 rounded-full text-sm font-medium bg-white/5 border border-white/10 backdrop-blur-md text-slate-300 transition hover:bg-white/10">Phong cảnh</button>
+            <button onclick="filterCards('all')" class="liquid-btn px-5 py-2.5 rounded-full text-sm font-semibold text-slate-800 transition duration-300 shadow-sm active:scale-95">Tất cả</button>
+            <button onclick="filterCards('slide')" class="liquid-btn px-5 py-2.5 rounded-full text-sm font-semibold text-slate-700 transition duration-300 shadow-sm active:scale-95">Slide Thuyết Trình</button>
+            <button onclick="filterCards('game')" class="liquid-btn px-5 py-2.5 rounded-full text-sm font-semibold text-slate-700 transition duration-300 shadow-sm active:scale-95">Trò Chơi</button>
+            <button onclick="filterCards('landscape')" class="liquid-btn px-5 py-2.5 rounded-full text-sm font-semibold text-slate-700 transition duration-300 shadow-sm active:scale-95">Phong cảnh</button>
         </div>
     </header>
 
-    <!-- Main Content: Lưới hiển thị tự động từ JSON -->
-    <main class="max-w-6xl mx-auto px-6 py-10 flex-grow w-full relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="cardGrid">
-            <!-- Dữ liệu sẽ được chèn tự động bằng JavaScript ở đây -->
+    <!-- Main Content: Lưới card nạp tự động từ data.json -->
+    <main class="max-w-6xl mx-auto px-6 py-12 flex-grow w-full relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="cardGrid">
+            <!-- Dữ liệu tự động render vào đây -->
         </div>
     </main>
 
-    <!-- Modal Popup Chi tiết -->
-    <div id="fileModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900/60 backdrop-blur-3xl border border-white/20 w-full max-w-xl rounded-3xl p-6 md:p-8 relative shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold bg-white/10 hover:bg-white/20 w-8 h-8 rounded-full flex items-center justify-center transition">×</button>
+    <!-- Modal Popup Chi tiết (Hiệu ứng kính lỏng sáng) -->
+    <div id="fileModal" class="fixed inset-0 bg-slate-900/30 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
+        <div class="liquid-glass-light w-full max-w-xl rounded-3xl p-6 md:p-8 relative shadow-2xl scale-100">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-600 hover:text-slate-900 text-xl font-bold liquid-btn w-9 h-9 rounded-full flex items-center justify-center transition">×</button>
             
             <div class="text-center">
-                <p id="modalNote" class="text-xs text-amber-400 mb-2 font-medium"></p>
-                <h2 id="modalTitle" class="text-2xl font-bold text-white mb-2"></h2>
-                <p class="text-xs text-slate-400 mb-6">@Thichlamppt321</p>
+                <p id="modalNote" class="text-xs text-amber-800 font-semibold mb-3 bg-amber-400/20 border border-amber-400/30 py-1.5 px-4 rounded-full inline-block backdrop-blur-md"></p>
+                <h2 id="modalTitle" class="text-2xl font-bold text-slate-900 mb-2 mt-1"></h2>
+                <p class="text-xs text-slate-500 mb-6 font-medium">@Thichlamppt321</p>
 
-                <div class="flex justify-center gap-4 mb-6 text-slate-300">
-                    <span class="bg-white/5 border border-white/10 px-3 py-1 rounded-full text-xs backdrop-blur-md">TikTok</span>
-                    <span class="bg-white/5 border border-white/10 px-3 py-1 rounded-full text-xs backdrop-blur-md">Facebook</span>
+                <div class="flex justify-center gap-4 mb-6 text-slate-700">
+                    <span class="liquid-btn px-4 py-1.5 rounded-full text-xs font-semibold shadow-sm">TikTok</span>
+                    <span class="liquid-btn px-4 py-1.5 rounded-full text-xs font-semibold shadow-sm">Facebook</span>
                 </div>
 
-                <a id="modalDownloadBtn" href="#" target="_blank" class="block w-full py-3 px-6 rounded-xl border border-white/20 bg-white/10 font-semibold text-white hover:bg-teal-500 hover:border-teal-500 hover:text-slate-950 transition duration-300 text-center backdrop-blur-md shadow-lg">
-                    TẢI XUỐNG
+                <a id="modalDownloadBtn" href="#" target="_blank" class="liquid-btn block w-full py-3.5 px-6 rounded-2xl font-bold text-teal-700 hover:text-teal-800 hover:bg-white transition duration-300 text-center shadow-lg active:scale-[0.98] border border-teal-500/30">
+                    TẢI XUỐNG NGAY
                 </a>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="py-6 text-center text-xs text-slate-500 border-t border-white/10 bg-slate-900/20 backdrop-blur-md relative z-10">
-        © 2026 Thichlamppt321
+    <footer class="py-6 text-center text-xs text-slate-600 font-medium liquid-glass-light border-x-0 border-b-0 relative z-10">
+        © 2026 Thichlamppt321 - All rights reserved.
     </footer>
 
-    <!-- Script tự động nạp dữ liệu từ data.json -->
+    <!-- Script xử lý dữ liệu từ data.json[cite: 1, 2] -->
     <script>
         let allFiles = [];
 
-        // Tải dữ liệu từ file data.json tự động
         fetch('data.json')
             .then(response => response.json())
             .then(data => {
@@ -82,19 +110,19 @@
             grid.innerHTML = '';
             
             files.forEach(file => {
-                let categoryName = file.category === 'slide' ? 'Slide' : 'Trò Chơi';
-                let categoryColor = file.category === 'slide' ? 'text-teal-400' : 'text-indigo-400';
+                let categoryName = file.category === 'slide' ? 'Slide' : (file.category === 'game' ? 'Trò Chơi' : 'Phong Cảnh');
+                let categoryColor = file.category === 'slide' ? 'text-teal-600' : (file.category === 'game' ? 'text-sky-600' : 'text-indigo-600');
                 
                 grid.innerHTML += `
-                    <div data-category="${file.category}" class="group relative bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl hover:border-teal-500/50 transition duration-300 cursor-pointer" onclick="openModal('${file.title.replace(/'/g, "\\'")}', '${file.note.replace(/'/g, "\\'")}', '${file.link}')">
-                        <div class="h-48 overflow-hidden relative">
+                    <div data-category="${file.category}" class="group liquid-glass-light rounded-3xl overflow-hidden shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1.5 hover:shadow-2xl" onclick="openModal('${file.title.replace(/'/g, "\\'")}', '${file.note.replace(/'/g, "\\'")}', '${file.link}')">
+                        <div class="h-52 overflow-hidden relative m-3 rounded-2xl shadow-inner">
                             <img src="${file.img}" alt="${file.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent opacity-80"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent opacity-60"></div>
                         </div>
-                        <div class="p-5">
-                            <span class="text-xs font-semibold ${categoryColor} uppercase tracking-wider">${categoryName}</span>
-                            <h3 class="text-lg font-bold mt-1 text-slate-100 group-hover:text-teal-300 transition">${file.title}</h3>
-                            <p class="text-slate-400 text-xs mt-2">@Thichlamppt321</p>
+                        <div class="px-6 pb-6 pt-2">
+                            <span class="text-xs font-bold ${categoryColor} uppercase tracking-wider">${categoryName}</span>
+                            <h3 class="text-lg font-bold mt-1.5 text-slate-900 group-hover:text-teal-600 transition">${file.title}</h3>
+                            <p class="text-slate-500 text-xs mt-2 font-medium">@Thichlamppt321</p>
                         </div>
                     </div>
                 `;
